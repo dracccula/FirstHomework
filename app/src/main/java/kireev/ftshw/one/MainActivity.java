@@ -5,40 +5,42 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import static kireev.ftshw.one.SecondActivity.mProgressBar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    public static final String EXTRA_MESSAGE_COLOR = "color";
+    private Button open2activitybutton;
     public static TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String messageText = intent.getStringExtra(EXTRA_MESSAGE_COLOR);
         text = findViewById(R.id.textView);
-        mProgressBar = findViewById(R.id.circleProgressBar);
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-        button = findViewById(R.id.launchSecondActivityButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        text.setText(messageText);
+        open2activitybutton = findViewById(R.id.launchSecondActivityButton);
+        open2activitybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //открываем активити
                 openActivity2();
-                mProgressBar.setVisibility(ProgressBar.VISIBLE);
             }
         });
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (intent == null) {return;}
 
-
+        text.setText(intent.getStringExtra(EXTRA_MESSAGE_COLOR));
     }
 
     private void openActivity2() {
         Intent intent = new Intent(this,SecondActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
 
 }

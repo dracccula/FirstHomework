@@ -7,7 +7,7 @@
     tools:context=".SecondActivity">
 
     <ImageButton
-        android:id="@+id/yellowButton"
+        android:id="@+id/YellowButton"
         android:layout_width="89dp"
         android:layout_height="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,24 +19,25 @@
         android:contentDescription="TODO" />
 
     <ImageButton
-        android:id="@+id/greenButton"
+        android:id="@+id/GreenButton"
         android:layout_width="89dp"
         android:layout_height="64dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/yellowButton"
+        app:layout_constraintStart_toEndOf="@+id/YellowButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@color/colorGreenLight" />
 
     <ImageButton
-        android:id="@+id/redButton"
+        android:id="@+id/RedButton"
         android:layout_width="89dp"
         android:layout_height="64dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/yellowButton"
+        app:layout_constraintEnd_toStartOf="@+id/YellowButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@color/colorRedLight" />
+
 </android.support.constraint.ConstraintLayout>
