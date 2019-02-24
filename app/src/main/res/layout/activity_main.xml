@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Guess the number?"
+        android:text="WHAT'S THE COLOR?"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/launchSecondActivityButton"
         app:layout_constraintEnd_toEndOf="parent"

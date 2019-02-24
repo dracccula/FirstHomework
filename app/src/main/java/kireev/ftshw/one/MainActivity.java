@@ -1,5 +1,7 @@
 package kireev.ftshw.one;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,17 +12,24 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE_COLOR = "color";
+    public static final String EXTRA_MESSAGE_NOTIFICATION_COLOR = "color";
+    public final static String EXTRA_MESSAGE_CHOOSE_COLOR = "Choose color";
     private Button open2activitybutton;
+    private Button start;
+    private Button stop;
     public static TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        String messageText = intent.getStringExtra(EXTRA_MESSAGE_COLOR);
+        Intent intent = new Intent();
+        //intentService.putExtra(MainActivity.EXTRA_MESSAGE_CHOOSE_COLOR, "NOTHING HERE NOW");
+        //startService(intentService);
+        //String messageText = intentService.getStringExtra(EXTRA_MESSAGE_COLOR);
         text = findViewById(R.id.textView);
-        text.setText(messageText);
+        //text.setText(messageText);
+
         open2activitybutton = findViewById(R.id.launchSecondActivityButton);
         open2activitybutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,5 +51,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,SecondActivity.class);
         startActivityForResult(intent,1);
     }
-
 }
