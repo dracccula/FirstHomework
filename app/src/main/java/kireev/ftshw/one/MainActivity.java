@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent();
+        //Intent intent = new Intent();
         //intentService.putExtra(MainActivity.EXTRA_MESSAGE_CHOOSE_COLOR, "NOTHING HERE NOW");
         //startService(intentService);
         //String messageText = intentService.getStringExtra(EXTRA_MESSAGE_COLOR);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (intent == null) {return;}
 
-        text.setText(intent.getStringExtra(EXTRA_MESSAGE_COLOR));
+        text.setText(intent.getStringExtra(MyService.EXTRA_MESSAGE));
     }
 
     private void openActivity2() {

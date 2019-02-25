@@ -5,7 +5,9 @@ import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import static kireev.ftshw.one.MainActivity.EXTRA_MESSAGE_CHOOSE_COLOR;
@@ -16,6 +18,7 @@ public class MyService extends IntentService {
 
     public static final String EXTRA_KEY_OUT = "EXTRA_OUT";
     public static final String EXTRA_MESSAGE = "message";
+    public static final String ACTION_MYINTENTSERVICE = "RESPONSE";
     final String LOG_TAG = "myLogs";
     public static final int NOTIFICATION_ID = 1;
 
@@ -26,9 +29,20 @@ public class MyService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String messageText = intent.getStringExtra(EXTRA_MESSAGE_COLOR);
-        String messageTitle = intent.getStringExtra(EXTRA_MESSAGE_NOTIFICATION_COLOR);
-        showText(messageTitle, messageText);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String messageText = intent.getStringExtra(MainActivity.EXTRA_MESSAGE_COLOR);
+        String messageTitle = intent.getStringExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR);
+        String newMessage = "IntentService after a pause of 3 seconds echoes " + messageTitle;
+        showText(newMessage, messageText);
+
+        final Intent intent1 = new Intent(ACTION_MYINTENTSERVICE);
+        intent1.putExtra(EXTRA_MESSAGE, newMessage);
+
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
     }
 
     void showText(final String title, final String text) {

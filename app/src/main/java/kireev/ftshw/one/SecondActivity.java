@@ -3,6 +3,8 @@ package kireev.ftshw.one;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +26,9 @@ public class SecondActivity extends AppCompatActivity {
         yellow = findViewById(R.id.YellowButton);
         green = findViewById(R.id.GreenButton);
         final Intent intentService = new Intent(this, MyService.class);
-        startService(new Intent(this, MyService.class));
+        intentService.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, "Red");
+        intentService.putExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR, "White");
+        startService(intentService);
 
         //слушаем красную кнопку
         red.setOnClickListener(new View.OnClickListener() {
@@ -32,12 +36,12 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String redColor = "RED!";
                 //Intent intent = new Intent();
-                //Intent intentService = new Intent(SecondActivity.this, MyService.class);
-                BroadcastReceiver br = new MyBR();
+                Intent intentService = new Intent(SecondActivity.this, MyService.class);
                 intentService.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, redColor);
                 intentService.putExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR, redColor);
-                br.onReceive(SecondActivity.this, intentService);
-                Log.d(LOG_TAG, "Color " + redColor + " chosen" + intentService.getAction());
+                //br.onReceive(SecondActivity.this, intentService);
+                sendBroadcast(intentService);
+                Log.d(LOG_TAG, "Color " + redColor + " chosen " + intentService.getAction());
                 setResult(RESULT_OK, intentService);
                 finish();
             }
@@ -68,13 +72,20 @@ public class SecondActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        IntentFilter intentFilter = new IntentFilter(MyService.ACTION_MYINTENTSERVICE);
+        BroadcastReceiver br = new MyBroadcastReceiver();
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
+        manager.registerReceiver(br, intentFilter);
     }
 
     public class MyBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            String result = intent.getStringExtra(MyService.EXTRA_KEY_OUT);
+            Log.d(LOG_TAG, "Color " + intent.getAction());
+            SecondActivity.this.setResult(RESULT_OK, intent);
+            SecondActivity.this.finish();
         }
     }
 }
