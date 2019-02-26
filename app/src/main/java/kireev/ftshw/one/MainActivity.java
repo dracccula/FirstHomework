@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE_COLOR = "color";
-    public static final String EXTRA_MESSAGE_NOTIFICATION_COLOR = "color";
+    public static final String EXTRA_MESSAGE_NOTIFICATION_COLOR = "notification title color";
     public final static String EXTRA_MESSAGE_CHOOSE_COLOR = "Choose color";
     private Button open2activitybutton;
     private Button start;
@@ -23,12 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Intent intent = new Intent();
-        //intentService.putExtra(MainActivity.EXTRA_MESSAGE_CHOOSE_COLOR, "NOTHING HERE NOW");
-        //startService(intentService);
-        //String messageText = intentService.getStringExtra(EXTRA_MESSAGE_COLOR);
         text = findViewById(R.id.textView);
-        //text.setText(messageText);
 
         open2activitybutton = findViewById(R.id.launchSecondActivityButton);
         open2activitybutton.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
                 openActivity2();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override

@@ -13,10 +13,14 @@
         android:theme="@style/AppTheme"
         android:configChanges="orientation|screenSize|keyboard">
 
-        <activity android:name=".SecondActivity"></activity>
+        <activity android:name=".SecondActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

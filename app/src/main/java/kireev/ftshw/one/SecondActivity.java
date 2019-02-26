@@ -25,25 +25,19 @@ public class SecondActivity extends AppCompatActivity {
         red = findViewById(R.id.RedButton);
         yellow = findViewById(R.id.YellowButton);
         green = findViewById(R.id.GreenButton);
-        final Intent intentService = new Intent(this, MyService.class);
-        intentService.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, "Red");
-        intentService.putExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR, "White");
-        startService(intentService);
 
         //слушаем красную кнопку
         red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String redColor = "RED!";
-                //Intent intent = new Intent();
+                String redColor = "red";
                 Intent intentService = new Intent(SecondActivity.this, MyService.class);
                 intentService.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, redColor);
-                intentService.putExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR, redColor);
-                //br.onReceive(SecondActivity.this, intentService);
-                sendBroadcast(intentService);
+                intentService.putExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR, "Red button clicked!");
+                startService(intentService);
                 Log.d(LOG_TAG, "Color " + redColor + " chosen " + intentService.getAction());
                 setResult(RESULT_OK, intentService);
-                finish();
+
             }
         });
 
@@ -51,12 +45,14 @@ public class SecondActivity extends AppCompatActivity {
         yellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String yellowColor = "YELLOW!";
-                Intent intent = new Intent();
-                intent.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, yellowColor);
+                String yellowColor = "yellow";
+                Intent intentService = new Intent(SecondActivity.this, MyService.class);
+                intentService.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, yellowColor);
+                intentService.putExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR, "Yellow button clicked!");
+                startService(intentService);
                 Log.d(LOG_TAG, "Color " + yellowColor + " chosen");
-                setResult(RESULT_OK, intent);
-                finish();
+                setResult(RESULT_OK, intentService);
+
             }
         });
 
@@ -64,12 +60,13 @@ public class SecondActivity extends AppCompatActivity {
         green.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String greenColor = "GREEN!";
-                Intent intent = new Intent();
-                intent.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, greenColor);
+                String greenColor = "green";
+                Intent intentService = new Intent(SecondActivity.this, MyService.class);
+                intentService.putExtra(MainActivity.EXTRA_MESSAGE_COLOR, greenColor);
+                intentService.putExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR, "Green button clicked!");
+                startService(intentService);
                 Log.d(LOG_TAG, "Color " + greenColor + " chosen");
-                setResult(RESULT_OK, intent);
-                finish();
+                setResult(RESULT_OK, intentService);
             }
         });
 

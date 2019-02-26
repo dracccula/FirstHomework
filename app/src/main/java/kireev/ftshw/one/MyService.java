@@ -36,12 +36,11 @@ public class MyService extends IntentService {
         }
         String messageText = intent.getStringExtra(MainActivity.EXTRA_MESSAGE_COLOR);
         String messageTitle = intent.getStringExtra(MainActivity.EXTRA_MESSAGE_NOTIFICATION_COLOR);
-        String newMessage = "IntentService after a pause of 3 seconds echoes " + messageTitle;
-        showText(newMessage, messageText);
+        String capMessageText = messageText.toUpperCase() + "!";
+        showText(messageTitle, messageText);
 
         final Intent intent1 = new Intent(ACTION_MYINTENTSERVICE);
-        intent1.putExtra(EXTRA_MESSAGE, newMessage);
-
+        intent1.putExtra(EXTRA_MESSAGE, capMessageText);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
     }
 
@@ -61,12 +60,12 @@ public class MyService extends IntentService {
     /**
     * Создание построителя уведомлений
     */
-    Intent actionIntent = new Intent(this, MainActivity.class);
+    /*Intent actionIntent = new Intent(this, MainActivity.class);
     PendingIntent actionPendingIntent = PendingIntent.getActivity(
             this,
             0,
             actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-    builder.setContentIntent(actionPendingIntent);
+    builder.setContentIntent(actionPendingIntent);*/
 
         /**
          * Выдача уведомления
