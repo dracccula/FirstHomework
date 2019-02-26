@@ -60,12 +60,12 @@ public class MyService extends IntentService {
     /**
     * Создание построителя уведомлений
     */
-    /*Intent actionIntent = new Intent(this, MainActivity.class);
+    Intent actionIntent = new Intent(this, MainActivity.class);
     PendingIntent actionPendingIntent = PendingIntent.getActivity(
             this,
             0,
             actionIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-    builder.setContentIntent(actionPendingIntent);*/
+    builder.setContentIntent(actionPendingIntent);
 
         /**
          * Выдача уведомления
